@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Transactions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Transaction id="Invoice0000001">
+		<TransactionDate>20/02/2019 12:33</TransactionDate>
+		<PaymentDetails>
+			<Amount>1000.0</Amount>
+			<CurrencyCode>USD</CurrencyCode>
+		</PaymentDetails>
+		<Status>Done</Status>
+	</Transaction>
+	<Transaction id="Invoice0000002">
+		<TransactionDate>21/02/2019 02:04</TransactionDate>
+		<PaymentDetails>
+			<Amount>2000.0</Amount>
+			<CurrencyCode>USD</CurrencyCode>
+		</PaymentDetails>
+		<Status>Rejected</Status>
+	</Transaction>
+</Transactions>
