@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Transactions>
+@{
+    Layout = null;
+}
+<form asp-controller="Transactions" asp-action="Index" medthod="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".xml,.csv,.xls,.xlsx" />
+    <hr />
+    <button type="submit">Upload</button>
+</form>
+@if (Model.Count() > 0)
+{
+    <hr />
+    <table cellpadding="0" cellspacing="0" border="1">
+        <tr>
+            <td>Id</td>
+            <td>Payment</td>
+            <td>Status</td>
+        </tr>
+        @foreach (Transactions transaction in Model)
+        {
+            <tr>
+                <td>@transaction.TransactionId</td>
+                @*<td>@transaction.TransactionDate</td>*@
+                <td>@transaction.Amount @transaction.CurrencyCode </td>
+                <td>@transaction.Status</td>
+            </tr>
+        }
+    </table>
+}
