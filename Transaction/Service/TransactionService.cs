@@ -6,7 +6,7 @@ namespace Transaction.Service
 {
     public class TransactionService : ITransactionService
     {
-        DatabaseContext _dbContext = null;
+        public DatabaseContext _dbContext = null;
 
         public TransactionService(DatabaseContext dbContext)
         {
@@ -16,6 +16,17 @@ namespace Transaction.Service
         {
             return _dbContext.transactions.ToList();
         }
+
+        //public List<Transactions> GetTransactions(int id)
+        //{
+        //    List<Transactions> transaction = null;
+        //    transaction= _dbContext.Find(id);
+        //    if(transaction == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return transaction;
+        //}
 
         public List<Transactions> SaveTransactions(List<Transactions> transactions)
         {
