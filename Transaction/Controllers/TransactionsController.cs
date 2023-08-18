@@ -3,13 +3,23 @@ using Microsoft.AspNetCore.Mvc;
 using System.Transactions;
 using System.Xml;
 using Transaction.Models;
+using Transaction.Service;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Transaction.Controllers
 {
     public class TransactionsController : Controller
     {
+        ITransactionService _transactionService = null;
+        List<Transactions> _transactions= new List<Transactions>();
+
         string[] validFileTypes = { ".xls", ".xlsx", ".csv", ".xml" };
+
+
+        public TransactionsController(ITransactionService transactionService)
+        {
+            _transactionService = transactionService;
+        }
 
         [HttpGet]
         public IActionResult Index(List<Transactions> transactions = null)
@@ -33,6 +43,8 @@ namespace Transaction.Controllers
             if (validFileTypes.Contains(extension))
             {
                 transactions = this.GetTransactionList(file.FileName, extension);
+                SaveTransactions(transactions);
+                transactions=GetAllTransactions();
             }
             else
             {
@@ -126,11 +138,23 @@ namespace Transaction.Controllers
                 }
             }
 
-
-
-
-
             return transactions;
         }
+
+
+        public void SaveTransactions(List<Transactions> transactions)
+        {
+            _transactions = _transactionService.SaveTransactions(transactions); 
+          
+        }
+        public List<Transactions>  GetAllTransactions()
+        {
+            List<Transactions> t= new List<Transactions>();
+            t = _transactionService.GetTransactions();
+
+            return t;
+
+        }
+
     }
 }

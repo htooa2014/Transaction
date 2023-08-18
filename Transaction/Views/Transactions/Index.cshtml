@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Transactions>
 @{
-    Layout = null;
+    
+    ViewData["Title"] = "Transaction Page";
 }
 <form asp-controller="Transactions" asp-action="Index" medthod="post" enctype="multipart/form-data">
     <input type="file" name="file" accept=".xml,.csv,.xls,.xlsx" />
