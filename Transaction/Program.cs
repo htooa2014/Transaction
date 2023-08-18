@@ -1,8 +1,12 @@
+using Transaction.Context;
+using Transaction.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<DatabaseContext>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
